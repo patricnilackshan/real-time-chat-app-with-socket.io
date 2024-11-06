@@ -1,6 +1,11 @@
-const io = require("socket.io")(5000, {
-  cors: true,
-});
+const express = require("express");
+const { createServer } = require("http");
+const app = express();
+const server = createServer(app);
+const io = require("socket.io")(server);
+app.use(express.static("public"));
+
+const PORT = 5000;
 
 const users = {};
 
@@ -27,4 +32,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("user-disconnected", users[socket.id]);
     delete users[socket.id];
   });
+});
+
+server.listen(PORT, () => {
+  console.log(`Server running on port http://localhost:${PORT}`);
 });
