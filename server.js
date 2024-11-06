@@ -4,10 +4,15 @@ const app = express();
 const server = createServer(app);
 const io = require("socket.io")(server);
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
-const PORT = 5000;
+const PORT = 7000;
 
 const users = {};
+
+app.get("/", (req, res) => {
+  res.render("index", { port: PORT });
+});
 
 io.on("connection", (socket) => {
   console.log("New User Connected with socket id: ", socket.id);
