@@ -6,7 +6,7 @@ const io = require("socket.io")(server);
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-const PORT = 7000;
+const PORT = 5000;
 
 const users = {};
 
