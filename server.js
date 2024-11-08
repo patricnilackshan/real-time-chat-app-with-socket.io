@@ -17,7 +17,8 @@ const PORT = 7001;
 const users = {};
 
 app.get("/", (req, res) => {
-  res.render("index", { port: PORT });
+  HOST = `${req.protocol}://${req.hostname}`;
+  res.render("index", { port: PORT, host: HOST });
 });
 
 io.on("connection", (socket) => {

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaanga Pesalaam</title>
     <script>
-        const PORT = "<%= port %>";      
+        const PORT = "<%= port %>"; 
+        const HOST = "<%= host %>"; 
     </script>
-    <script defer src="http://localhost:<%= port %>/socket.io/socket.io.js"></script>
+    <script defer src="<%= host %>:<%= port %>/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
