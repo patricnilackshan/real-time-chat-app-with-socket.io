@@ -33,7 +33,7 @@ socket.on("typing", (name) => {
   clearTimeout(typingTimeout);
   typingTimeout = setTimeout(() => {
     typingIndicator.textContent = "";
-  }, 3000);
+  }, 1000);
 });
 
 // Sending messages
