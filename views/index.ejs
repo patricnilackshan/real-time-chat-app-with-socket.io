@@ -10,94 +10,16 @@
     </script>
     <script defer src="http://localhost:<%= port %>/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-        }
-
-        #message-container {
-            width: 80%;
-            max-width: 1200px;
-            margin-bottom: 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .message {
-            max-width: 60%;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 5px;
-            font-size: 16px;
-            line-height: 1.4;
-            word-wrap: break-word;
-        }
-
-        .message.user {
-            align-self: flex-end;
-            background-color: #dcf8c6;
-            text-align: right;
-        }
-
-        .message.other {
-            align-self: flex-start;
-            background-color: #fff;
-            border: 1px solid #ccc;
-        }
-
-        #send-container {
-            position: fixed;
-            bottom: 0;
-            width: 80%;
-            max-width: 1200px;
-            background-color: #fff;
-            padding: 10px;
-            display: flex;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #message-input {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        #send-container button {
-            margin-left: 10px;
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #send-container button:hover {
-            background-color: #45a049;
-        }
-
-        #typing {
-            font-style: italic;
-            color: #666;
-            padding-left: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="message-container"></div>
-    <form id="send-container">
-        <input type="text" id="message-input" placeholder="Enter your message">
-        <button type="submit">Send</button>
-        <div id="typing"></div>
-    </form>
+    <div class="chat-container">
+        <div id="message-container" class="messages"></div>
+        <form id="send-container" class="message-input-container">
+            <input type="text" id="message-input" placeholder="Enter your message" class="message-input">
+            <button type="submit" class="send-btn">Send</button>
+        </form>
+        <div id="typing" class="typing-indicator"></div>
+    </div>
 </body>
 </html>

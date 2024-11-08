@@ -29,10 +29,12 @@ socket.on("user-disconnected", (name) => {
 
 // Handle typing indication
 socket.on("typing", (name) => {
+  typingIndicator.style.visibility = "visible";
   typingIndicator.textContent = `${name} is typing...`;
+
   clearTimeout(typingTimeout);
   typingTimeout = setTimeout(() => {
-    typingIndicator.textContent = "";
+    typingIndicator.style.visibility = "hidden"; // Hide after a delay
   }, 1000);
 });
 
@@ -60,8 +62,12 @@ function appendMessage(message, type) {
     messageElement.classList.add("user");
   } else if (type === "other") {
     messageElement.classList.add("other");
+  } else if (type === "system") {
+    messageElement.classList.add("system");
   }
   messageElement.innerText = message;
   messageContainer.append(messageElement);
-  window.scrollTo(0, document.body.scrollHeight);
+
+  // Scroll to bottom of the container
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 }

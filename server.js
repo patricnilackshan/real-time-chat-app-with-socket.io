@@ -21,10 +21,10 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("New User Connected with socket id: ", socket.id);
-
   socket.on("new-user", (name) => {
     users[socket.id] = name;
+    console.log("\nConnected    User: ", users[socket.id]);
+    console.log("Active users: ", socket.client.conn.server.clientsCount);
     socket.broadcast.emit("user-connected", name);
   });
 
@@ -40,6 +40,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
+    console.log("\nDisconnected User: ", users[socket.id]);
+    console.log("Active users: ", socket.client.conn.server.clientsCount);
     socket.broadcast.emit("user-disconnected", users[socket.id]);
     delete users[socket.id];
   });
