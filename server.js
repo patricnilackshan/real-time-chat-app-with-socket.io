@@ -1,10 +1,16 @@
 const express = require("express");
 const { createServer } = require("http");
+const cors = require("cors");
 const app = express();
-const server = createServer(app);
-const io = require("socket.io")(server);
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+const server = createServer(app);
+const io = require("socket.io")(server);
 
 const PORT = 7001;
 
@@ -40,5 +46,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
